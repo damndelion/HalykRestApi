@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id "org.springframework.boot" version "2.7.4"
+}
+
+group 'kz.halyk'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.4'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.7.4'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.4'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'org.postgresql:postgresql:42.5.0'
+    implementation 'junit:junit:4.13.1'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.4'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.9.1'
+    testImplementation 'org.mockito:mockito-core:4.8.0'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+checkstyle {
+    toolVersion '8.22'
+    configFile = file("$rootProject.projectDir/src/main/resources/checkstyle/checkstyle.xml")
+    reportsDir = file("$project.buildDir/reports/checkstyle")
+}
+
+checkstyleMain {
+    source ='src/main/java'
+}
+
+checkstyleTest {
+    source ='src/test/java'
+}
